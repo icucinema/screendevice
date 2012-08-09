@@ -18,21 +18,20 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include "AppLogic.h"
+#ifndef APPLOGIC_H
+#define APPLOGIC_H
 
-#include <QtCore/QCoreApplication>
-#include <QtCore/QDebug>
+#include <QtCore/QObject>
 
-int main (int argc, char *argv[])
-{
-    QCoreApplication app(argc, argv);
+class AppLogic : public QObject {
 
-    AppLogic *appLogic = new AppLogic(&app);
+    Q_OBJECT
 
-    qDebug() << "Lanuching Application.";
-
-    app.exec();
-
+public:
+    explicit AppLogic(QObject *parent);
+    virtual ~AppLogic();
 };
+
+#endif
 
 

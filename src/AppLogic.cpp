@@ -20,19 +20,17 @@
 
 #include "AppLogic.h"
 
-#include <QtCore/QCoreApplication>
 #include <QtCore/QDebug>
 
-int main (int argc, char *argv[])
+AppLogic::AppLogic(QObject *parent)
+    : QObject(parent)
 {
-    QCoreApplication app(argc, argv);
+    qDebug() << "AppLogic Constructed.";
+}
 
-    AppLogic *appLogic = new AppLogic(&app);
-
-    qDebug() << "Lanuching Application.";
-
-    app.exec();
-
-};
+AppLogic::~AppLogic()
+{
+    qDebug() << "AppLogic Destroyed.";
+}
 
 

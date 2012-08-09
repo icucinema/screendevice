@@ -6,6 +6,7 @@ add_definitions(-DQT_NO_CAST_FROM_ASCII)
 
 set(screendevice_SRCS
     main.cpp
+    AppLogic.cpp
 )
 
 add_executable(screendevice ${screendevice_SRCS})
