@@ -23,16 +23,43 @@
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDebug>
 
+extern "C"
+{
+    #include <signal.h>
+}
+
+namespace
+{
+    static void signal_handler(int sig)
+    {
+        if (sig == SIGTERM || sig == SIGINT)
+        {
+            QCoreApplication * const qapp(QCoreApplication::instance());
+            if (0 != qapp) {
+                qapp->quit();
+            }
+            return;
+        }
+    }
+}
+
 int main (int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
+
+    // Install signal handlers
+    if (signal(SIGTERM, signal_handler) == SIG_ERR) {
+        qWarning() << "Failed to install handler for SIGTERM.";
+    }
+    if (signal(SIGINT, signal_handler) == SIG_ERR) {
+        qWarning() << "Failed to install handler for SIGINT.";
+    }
 
     AppLogic *appLogic = new AppLogic(&app);
 
     qDebug() << "Lanuching Application.";
 
     app.exec();
-
 };
 
 
