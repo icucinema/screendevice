@@ -20,9 +20,12 @@
 
 #include "RetractingScreenService.h"
 
+#include "HardwareController.h"
+
 using namespace Herqq::Upnp;
 
-RetractingScreenService::RetractingScreenService()
+RetractingScreenService::RetractingScreenService(HardwareController *hardwareController)
+    : m_hardwareController(hardwareController)
 {
 
 }

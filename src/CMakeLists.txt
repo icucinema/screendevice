@@ -12,6 +12,7 @@ set(${PROJECT_NAME}_SRCS
     DeviceModelCreator.cpp
     RetractingScreenDevice.cpp
     RetractingScreenService.cpp
+    HardwareController.cpp
 )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS})

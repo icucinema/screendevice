@@ -21,6 +21,7 @@
 #include "AppLogic.h"
 
 #include "DeviceModelCreator.h"
+#include "HardwareController.h"
 
 #include "config.h"
 
@@ -33,7 +34,8 @@ using namespace Herqq::Upnp;
 
 AppLogic::AppLogic(QObject *parent)
     : QObject(parent),
-      m_deviceHost(0)
+      m_deviceHost(0),
+      m_hardwareController(new HardwareController(this))
 {
     qDebug() << "AppLogic Constructed.";
 }
@@ -47,7 +49,7 @@ void AppLogic::init()
 {
     // Initialise the UPnp Device Host
     HDeviceHostConfiguration hostConf;
-    hostConf.setDeviceModelCreator(DeviceModelCreator());
+    hostConf.setDeviceModelCreator(DeviceModelCreator(m_hardwareController));
 
     HDeviceConfiguration deviceConf;
     QString xmlpath = UPNP_DESCRIPTION_DIR+QLatin1String("/RetractingScreenDevice.xml");

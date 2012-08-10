@@ -20,6 +20,7 @@
 
 #include "DeviceModelCreator.h"
 
+#include "HardwareController.h"
 #include "RetractingScreenDevice.h"
 #include "RetractingScreenService.h"
 
@@ -28,6 +29,12 @@
 #include <HUpnpCore/HServiceInfo>
 
 using namespace Herqq::Upnp;
+
+DeviceModelCreator::DeviceModelCreator(HardwareController *hardwareController)
+    : m_hardwareController(hardwareController)
+{
+
+}
 
 HServerDevice *DeviceModelCreator::createDevice(const HDeviceInfo &info) const
 {
@@ -44,7 +51,7 @@ HServerService *DeviceModelCreator::createService(const HServiceInfo &info,
 {
     if (info.serviceType().toString() == 
             QLatin1String("urn:schemas-icucinema-co-uk:service:RetractingScreen:1")) {
-        return new RetractingScreenService();
+        return new RetractingScreenService(m_hardwareController);
     }
 
     return 0;
@@ -52,7 +59,7 @@ HServerService *DeviceModelCreator::createService(const HServiceInfo &info,
 
 DeviceModelCreator *DeviceModelCreator::newInstance() const
 {
-    return new DeviceModelCreator();
+    return new DeviceModelCreator(m_hardwareController);
 }
 
 

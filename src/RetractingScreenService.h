@@ -23,12 +23,14 @@
 
 #include <HUpnpCore/HServerService>
 
+class HardwareController;
+
 class RetractingScreenService : public Herqq::Upnp::HServerService {
 
     Q_OBJECT
 
 public:
-    RetractingScreenService();
+    RetractingScreenService(HardwareController *hardwareController);
     virtual ~RetractingScreenService();
 
     Q_INVOKABLE qint32 RaiseScreen(
@@ -46,6 +48,9 @@ public:
     Q_INVOKABLE qint32 GetPosition(
             const Herqq::Upnp::HActionArguments &inArgs,
             Herqq::Upnp::HActionArguments *outArgs);
+
+private:
+    HardwareController *m_hardwareController;
 
 };
 

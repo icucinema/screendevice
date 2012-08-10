@@ -18,26 +18,51 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef DEVICEMODELCREATOR_H
-#define DEVICEMODELCREATOR_H
+#ifndef HARDWARECONTROLLER_H
+#define HARDWARECONTROLLER_H
 
-#include <HUpnpCore/HDeviceModelCreator>
+#include <QtCore/QObject>
 
-class HardwareController;
+class QTimer;
 
-class DeviceModelCreator : public Herqq::Upnp::HDeviceModelCreator {
+class HardwareController : public QObject {
+
+    Q_OBJECT
 
 public:
-    explicit DeviceModelCreator(HardwareController *hardwareController);
+    enum Position {
+        PositionUnknown,
+        PositionTop,
+        PositionMiddle,
+        PositionBottom,
+    };
+    
+    enum Status {
+        StatusUnknown,
+        StatusLowering,
+        StatusStopped,
+        StatusRaising,
+    };
 
-    virtual Herqq::Upnp::HServerDevice *createDevice(const Herqq::Upnp::HDeviceInfo &info) const;
-    virtual Herqq::Upnp::HServerService *createService(const Herqq::Upnp::HServiceInfo &info,
-                                                       const Herqq::Upnp::HDeviceInfo &parentDeviceInfo) const;
+    explicit HardwareController(QObject *parent = 0);
+    virtual ~HardwareController();
+
+    void lowerScreen();
+    void raiseScreen();
+
+Q_SIGNALS:
+    void positionChanged(HardwareController::Position);
+    void statusChanged(HardwareController::Status);
+
+private Q_SLOTS:
+    void onFailsafeTimerTimeout();
+    void onBottomReached();
+    void onTopReached();
 
 private:
-    virtual DeviceModelCreator *newInstance() const;
-    
-    HardwareController *m_hardwareController;
+    QTimer *m_failsafeTimer;
+    Position m_position;
+    Status m_status;
 
 };
 

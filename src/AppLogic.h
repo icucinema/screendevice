@@ -29,6 +29,8 @@ namespace Herqq {
     }
 }
 
+class HardwareController;
+
 class AppLogic : public QObject {
 
     Q_OBJECT
@@ -41,6 +43,7 @@ public:
 
 private:
     Herqq::Upnp::HDeviceHost *m_deviceHost;
+    HardwareController *m_hardwareController;
 
 };
 
