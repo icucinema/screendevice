@@ -40,7 +40,7 @@
             <argumentList>
                 <argument>
                     <name>Position</name>
-                    <relatedStateVariable>ScreenPosition</relatedStateVariable>
+                    <relatedStateVariable>Position</relatedStateVariable>
                     <direction>out</direction>
                 </argument>
             </argumentList>
@@ -49,12 +49,12 @@
     <serviceStateTable>
         <stateVariable sendEvents="yes">
             <name>RetractingStatus</name>
-            <dataType>character</dataType>
+            <dataType>char</dataType>
             <defaultValue>u</defaultValue>
         </stateVariable>
         <stateVariable sendEvents="yes">
             <name>Position</name>
-            <dataType>character</dataType>
+            <dataType>char</dataType>
             <defaultValue>u</defaultValue>
         </stateVariable>
     </serviceStateTable>

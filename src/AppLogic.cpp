@@ -51,7 +51,6 @@ void AppLogic::init()
 
     HDeviceConfiguration deviceConf;
     QString xmlpath = UPNP_DESCRIPTION_DIR+QLatin1String("/RetractingScreenDevice.xml");
-    qDebug() << xmlpath;
     deviceConf.setPathToDeviceDescription(xmlpath);
 
     hostConf.add(deviceConf);
