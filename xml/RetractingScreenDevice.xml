@@ -1,0 +1,28 @@
+ <?xml version="1.0"?>
+ <root xmlns="urn:schemas-upnp-org:device-1-0">
+    <specVersion>
+        <major>1</major>
+        <minor>0</minor>
+    </specVersion>
+    <device>
+        <deviceType>urn:schemas-icucinema-co-uk:device:RetractingScreen:1</deviceType>
+        <friendlyName>Retracting Screen</friendlyName>
+        <manufacturer>ICU Cinema</manufacturer>
+        <manufacturerURL>www.icucinema.co.uk</manufacturerURL>
+        <modelDescription>Admire my bountiful crap-smears</modelDescription>
+        <modelName>TeH Bestest screen evar</modelName>
+        <modelNumber>1</modelNumber>
+        <UDN>uuid:30c976df-7d60-460c-a6d9-d8f3c9d7d6f3</UDN>
+        <serviceList>
+            <service>
+                <serviceType>urn:schemas-icucinema-co-uk:service:RetractingScreen:1</serviceType>
+                <serviceId>urn:id.icucinema-co-uk:serviceId:RetractingScreen:1</serviceId>
+                <SCPDURL>RetractingScreenService.xml</SCPDURL>
+                <controlURL>/control</controlURL>
+                <eventSubURL>/eventing</eventSubURL>
+            </service>
+        </serviceList>
+    </device>
+</root>
+
+

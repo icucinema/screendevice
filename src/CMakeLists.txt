@@ -7,12 +7,16 @@ add_definitions(-DQT_NO_CAST_FROM_ASCII)
 set(screendevice_SRCS
     main.cpp
     AppLogic.cpp
+    DeviceModelCreator.cpp
+    RetractingScreenDevice.cpp
+    RetractingScreenService.cpp
 )
 
 add_executable(screendevice ${screendevice_SRCS})
 
 target_link_libraries(screendevice
                       ${QT_QTCORE_LIBRARY}
+                      ${HUPNP_LIBS}
 )
 
 install(TARGETS screendevice ${ECM_TARGET_DEFAULT_ARGS})

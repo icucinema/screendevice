@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
+    <specVersion>
+        <major>1</major>
+        <minor>0</minor>
+    </specVersion>
+    <actionList>
+        <action>
+            <name>LowerScreen</name>
+            <argumentList>
+                <argument> 
+                    <name>success</name>
+                    <relatedStateVariable>RetractingStatus</relatedStateVariable>
+                    <direction>out</direction>
+                </argument>
+         </argumentList>
+        </action>
+        <action>
+            <name>RaiseScreen</name>
+            <argumentList>
+                <argument>
+                    <name>success</name>
+                    <relatedStateVariable>RetractingStatus</relatedStateVariable>
+                    <direction>out</direction>
+                </argument>
+            </argumentList>
+        </action>
+        <action>
+            <name>GetRetractingStatus</name>
+            <argumentList>
+                <argument>
+                    <name>Status</name>
+                    <relatedStateVariable>RetractingStatus</relatedStateVariable>
+                    <direction>out</direction>
+                </argument>
+            </argumentList>
+        </action>
+        <action>
+            <name>GetPosition</name>
+            <argumentList>
+                <argument>
+                    <name>Position</name>
+                    <relatedStateVariable>ScreenPosition</relatedStateVariable>
+                    <direction>out</direction>
+                </argument>
+            </argumentList>
+        </action>
+    </actionList>
+    <serviceStateTable>
+        <stateVariable sendEvents="yes">
+            <name>RetractingStatus</name>
+            <dataType>character</dataType>
+            <defaultValue>u</defaultValue>
+        </stateVariable>
+        <stateVariable sendEvents="yes">
+            <name>Position</name>
+            <dataType>character</dataType>
+            <defaultValue>u</defaultValue>
+        </stateVariable>
+    </serviceStateTable>
+</scpd>
+
+
