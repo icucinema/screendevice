@@ -62,6 +62,6 @@ int main (int argc, char *argv[])
     qDebug() << "Lanuching Application.";
 
     app.exec();
-};
+}
 
 

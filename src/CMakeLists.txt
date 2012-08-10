@@ -6,7 +6,7 @@ add_definitions(-DQT_NO_CAST_FROM_ASCII)
 configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 # END: Boilerplate
 
-set(screendevice_SRCS
+set(${PROJECT_NAME}_SRCS
     main.cpp
     AppLogic.cpp
     DeviceModelCreator.cpp
@@ -14,13 +14,13 @@ set(screendevice_SRCS
     RetractingScreenService.cpp
 )
 
-add_executable(screendevice ${screendevice_SRCS})
+add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS})
 
-target_link_libraries(screendevice
+target_link_libraries(${PROJECT_NAME}
                       ${QT_QTCORE_LIBRARY}
                       ${HUPNP_LIBS}
 )
 
-install(TARGETS screendevice ${ECM_TARGET_DEFAULT_ARGS})
+install(TARGETS ${PROJECT_NAME} ${ECM_TARGET_DEFAULT_ARGS})
 
 
