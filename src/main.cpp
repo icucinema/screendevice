@@ -57,6 +57,8 @@ int main (int argc, char *argv[])
 
     AppLogic *appLogic = new AppLogic(&app);
 
+    appLogic->init();
+
     qDebug() << "Lanuching Application.";
 
     app.exec();

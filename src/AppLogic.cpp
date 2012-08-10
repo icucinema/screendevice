@@ -20,10 +20,20 @@
 
 #include "AppLogic.h"
 
+#include "DeviceModelCreator.h"
+
+#include "config.h"
+
+#include <HUpnpCore/HDeviceHost>
+#include <HUpnpCore/HDeviceHostConfiguration>
+
 #include <QtCore/QDebug>
 
+using namespace Herqq::Upnp;
+
 AppLogic::AppLogic(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_deviceHost(0)
 {
     qDebug() << "AppLogic Constructed.";
 }
@@ -31,6 +41,27 @@ AppLogic::AppLogic(QObject *parent)
 AppLogic::~AppLogic()
 {
     qDebug() << "AppLogic Destroyed.";
+}
+
+void AppLogic::init()
+{
+    // Initialise the UPnp Device Host
+    HDeviceHostConfiguration hostConf;
+    hostConf.setDeviceModelCreator(DeviceModelCreator());
+
+    HDeviceConfiguration deviceConf;
+    QString xmlpath = UPNP_DESCRIPTION_DIR+QLatin1String("/RetractingScreenDevice.xml");
+    qDebug() << xmlpath;
+    deviceConf.setPathToDeviceDescription(xmlpath);
+
+    hostConf.add(deviceConf);
+
+    m_deviceHost = new HDeviceHost();
+    if (!m_deviceHost->init(hostConf)) {
+        qWarning() << "*** Failed to initialise deviceHost.";
+        qWarning() << "*** " << m_deviceHost->error();
+        qWarning() << "*** " << m_deviceHost->errorDescription();
+    }
 }
 
 

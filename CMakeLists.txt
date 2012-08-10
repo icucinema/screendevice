@@ -2,9 +2,11 @@
 cmake_minimum_required(VERSION 2.8.8)
 # END: Boilerplate
 
-project(screendevice)
+set(PROJECT_NAME screendevice)
 
 # BEGIN: Boilerplate
+project(${PROJECT_NAME})
+
 find_package(ECM 0.0.4 REQUIRED NO_MODULE)
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
@@ -21,6 +23,11 @@ include_directories(
     ${HUPNP_INCLUDE_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}
 )
+
+set(UPNP_DESCRIPTIONS_INSTALL_DIR "${DATA_INSTALL_DIR}/icucinema/hardnet/${PROJECT_NAME}/upnp")
 # END: Boilerplate
 
 add_subdirectory(src)
+add_subdirectory(xml)
+
+

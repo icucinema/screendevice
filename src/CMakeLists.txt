@@ -2,6 +2,8 @@
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 add_definitions(-DQT_NO_CAST_FROM_ASCII)
+
+configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 # END: Boilerplate
 
 set(screendevice_SRCS

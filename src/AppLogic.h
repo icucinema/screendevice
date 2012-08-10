@@ -23,6 +23,12 @@
 
 #include <QtCore/QObject>
 
+namespace Herqq {
+    namespace Upnp {
+        class HDeviceHost;
+    }
+}
+
 class AppLogic : public QObject {
 
     Q_OBJECT
@@ -30,6 +36,12 @@ class AppLogic : public QObject {
 public:
     explicit AppLogic(QObject *parent);
     virtual ~AppLogic();
+
+    void init();
+
+private:
+    Herqq::Upnp::HDeviceHost *m_deviceHost;
+
 };
 
 #endif
