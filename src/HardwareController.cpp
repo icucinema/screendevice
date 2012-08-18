@@ -72,10 +72,11 @@ void HardwareController::lowerScreen()
     m_failsafeTimer->start();
     
     if (m_status != StatusLowering) {
+        qDebug() << "*** HC: Setting LowerScreen GPIO Pin.";
+        
         m_status = StatusLowering;
         Q_EMIT statusChanged(m_status);
 
-        qDebug() << "*** HC: Setting Pin.";
         digitalWrite(7, HIGH);
     }
 
@@ -104,10 +105,11 @@ void HardwareController::raiseScreen()
     m_failsafeTimer->start();
     
     if (m_status != StatusRaising) {
+        qDebug() << "*** HC: Setting RaiseScreen GPIO Pin.";
+
         m_status = StatusRaising;
         Q_EMIT statusChanged(m_status);
 
-        qDebug() << "*** HC: Setting Pin.";
         digitalWrite(8, HIGH);
     }
 
@@ -123,7 +125,7 @@ void HardwareController::onFailsafeTimerTimeout()
     m_status = StatusStopped;
     Q_EMIT statusChanged(m_status);
 
-    qDebug() << "*** HC: Failsafe Timer Timeout Out. Stopping Screen.";
+    qDebug() << "*** HC: Failsafe Timer Timed Out. Stopping Screen.";
     digitalWrite(7, LOW);
     digitalWrite(8, LOW);
 
