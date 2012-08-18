@@ -22,6 +22,8 @@
 
 #include "HardwareController.h"
 
+#include <QtCore/QDebug>
+
 using namespace Herqq::Upnp;
 
 RetractingScreenService::RetractingScreenService(HardwareController *hardwareController)
@@ -38,12 +40,20 @@ RetractingScreenService::~RetractingScreenService()
 qint32 RetractingScreenService::RaiseScreen(const HActionArguments &inArgs,
                                             HActionArguments *outArgs)
 {
+    qDebug() << "*** RCS: RaiseScreen invoked.";
+    
+    m_hardwareController->raiseScreen();
+
     return UpnpSuccess;
 }
 
 qint32 RetractingScreenService::LowerScreen(const HActionArguments &inArgs,
                                             HActionArguments *outArgs)
 {
+    qDebug() << "*** RCS: LowerScreen invoked.";
+
+    m_hardwareController->lowerScreen();
+
     return UpnpSuccess;
 }
 

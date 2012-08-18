@@ -23,6 +23,8 @@
 #include <QtCore/QDebug>
 #include <QtCore/QTimer>
 
+#include <wiringPi.h>
+
 HardwareController::HardwareController(QObject *parent)
     : QObject(parent),
       m_failsafeTimer(0),
@@ -36,6 +38,15 @@ HardwareController::HardwareController(QObject *parent)
     m_failsafeTimer->setInterval(500);
 
     connect(m_failsafeTimer, SIGNAL(timeout()), this, SLOT(onFailsafeTimerTimeout()));
+
+    // Setup the wiringPi library for GPIO access
+    wiringPiSetupGpio();
+    pinMode(7, OUTPUT);
+    pinMode(8, OUTPUT);
+    digitalWrite(7, LOW);
+    digitalWrite(8, LOW);
+
+    qDebug() << "*** HC: Hardware initialisation completed.";
 }
 
 HardwareController::~HardwareController()
@@ -64,7 +75,8 @@ void HardwareController::lowerScreen()
         m_status = StatusLowering;
         Q_EMIT statusChanged(m_status);
 
-        // TODO: Actually tell the hardware to lower.
+        qDebug() << "*** HC: Setting Pin.";
+        digitalWrite(7, HIGH);
     }
 
     // If we aren't reporting the screen in the middle, then do so.
@@ -95,7 +107,8 @@ void HardwareController::raiseScreen()
         m_status = StatusRaising;
         Q_EMIT statusChanged(m_status);
 
-        // TODO: Actually tell the hardware to raise.
+        qDebug() << "*** HC: Setting Pin.";
+        digitalWrite(8, HIGH);
     }
 
     // If we aren't reporting the screen in the middle, then do so.
@@ -110,8 +123,9 @@ void HardwareController::onFailsafeTimerTimeout()
     m_status = StatusStopped;
     Q_EMIT statusChanged(m_status);
 
-    // TODO: Actually tell the hardware to stop.
-
+    qDebug() << "*** HC: Failsafe Timer Timeout Out. Stopping Screen.";
+    digitalWrite(7, LOW);
+    digitalWrite(8, LOW);
 }
 
 void HardwareController::onBottomReached()
