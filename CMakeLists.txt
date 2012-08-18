@@ -14,7 +14,7 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(KF5 5.0.0 REQUIRED MODULE COMPONENTS CMake Compiler InstallDirs)
 
 include(ECMQtFramework)
-find_package(Qt5Transitional REQUIRED Core)
+find_package(Qt4 REQUIRED)
 
 find_package(HUpnp REQUIRED)
 

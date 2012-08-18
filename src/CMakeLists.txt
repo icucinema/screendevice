@@ -6,6 +6,9 @@ add_definitions(-DQT_NO_CAST_FROM_ASCII)
 configure_file(config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 # END: Boilerplate
 
+# HUPnP has problems when we use NO_CAST_FROM_ASCII
+remove_definitions(-DQT_NO_CAST_FROM_ASCII)
+
 set(${PROJECT_NAME}_SRCS
     main.cpp
     AppLogic.cpp
