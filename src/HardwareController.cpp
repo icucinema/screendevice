@@ -126,6 +126,9 @@ void HardwareController::onFailsafeTimerTimeout()
     qDebug() << "*** HC: Failsafe Timer Timeout Out. Stopping Screen.";
     digitalWrite(7, LOW);
     digitalWrite(8, LOW);
+
+    // Stop the FailSafe timer so it doesn't timeout while we are waiting for the next command.
+    m_failsafeTimer->stop();
 }
 
 void HardwareController::onBottomReached()
