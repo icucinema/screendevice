@@ -23,6 +23,7 @@ add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS})
 target_link_libraries(${PROJECT_NAME}
                       ${QT_QTCORE_LIBRARY}
                       ${HUPNP_LIBS}
+                      -lwiringPi
 )
 
 install(TARGETS ${PROJECT_NAME} ${ECM_TARGET_DEFAULT_ARGS})
